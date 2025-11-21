@@ -1,11 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(req: NextRequest) {
-    // Just pass through everything
+    const { pathname } = req.nextUrl;
+
+    // Skip middleware for API and Next.js internals
+    if (
+        pathname.startsWith("/api/") ||
+        pathname.startsWith("/_next") ||
+        pathname.startsWith("/assets")
+    ) {
+        return NextResponse.next();
+    }
+
     return NextResponse.next();
 }
 
-// Apply middleware to all routes if needed
 export const config = {
-    matcher: ["/:path*"], // optional, can be omitted to apply globally
+    matcher: ["/dashboard/:path*", "/profile/:path*", "/orders/:path*"],
 };
