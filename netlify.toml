@@ -26,7 +26,7 @@ package = "@netlify/plugin-nextjs"
 
 [[redirects]]
 from = "/"
-to = "/home"
+to = "/login"
 status = 302
 force = false
 
