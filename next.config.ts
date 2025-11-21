@@ -3,9 +3,17 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: "standalone", // ensures .next can be deployed to Netlify
-  // Avoid pre-rendering for API routes and allow Edge functions if needed
   
-  pageExtensions: ["ts", "tsx", "js", "jsx", "mdx"], // ensures API routes aren't treated as pages
+  pageExtensions: ["ts", "tsx", "js", "jsx"], // only consider pages; API routes won't be pre-rendered
+  // Disable server-side generation for API routes
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*", 
+        destination: "/api/:path*", // preserves API routes without pre-render
+      },
+    ];
+  },
 };
 
 export default nextConfig;
