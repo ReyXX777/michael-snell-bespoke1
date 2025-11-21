@@ -1,8 +1,55 @@
+# ===========================
+# Netlify Configuration
+# ===========================
+
 [build]
 command = "bun run build"
 publish = ".next"
 
-[functions."*"]
-external_node_modules = ["sharp"]
 [build.environment]
 SECRETS_SCAN_ENABLED = "false"
+
+[functions."*"]
+external_node_modules = ["sharp"]
+
+# ===========================
+# Redirect Rules
+# ===========================
+
+[[redirects]]
+from = "/"
+to = "/home"
+status = 302
+force = false
+
+[[redirects]]
+from = "/login"
+to = "/login"
+status = 200
+force = false
+
+[[redirects]]
+from = "/register"
+to = "/register"
+status = 200
+force = false
+
+[[redirects]]
+from = "/api/auth/callback/google"
+to = "/api/auth/callback/google"
+status = 200
+force = false
+
+[[redirects]]
+from = "/old-path"
+to = "/new-path"
+status = 301
+force = false
+query = { path = ":path" }
+conditions = { Language = ["en", "es"], Country = ["US"] }
+
+[[redirects]]
+from = "/news"
+to = "/blog"
+status = 301
+force = false
