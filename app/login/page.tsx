@@ -106,7 +106,9 @@ export default function LoginPage() {
 
                     {/* GOOGLE LOGIN */}
                     <button
-                        onClick={() => signIn("google", { callbackUrl: "/shopping" })}
+                        onClick={() => signIn("google", {
+                            callbackUrl: `${process.env.NEXTAUTH_URL}/shopping`
+                        })}
                         className="w-full flex items-center justify-center space-x-2 border border-white/40 rounded-md py-2 hover:bg-white/10"
                     >
                         <img
