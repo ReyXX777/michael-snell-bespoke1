@@ -1,0 +1,9 @@
+[build]
+command = "bun run build"
+publish = ".next"
+
+[functions]
+external_node_modules = ["sharp"]
+
+[[plugins]]
+package = "@netlify/next"
