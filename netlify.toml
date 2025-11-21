@@ -4,3 +4,5 @@ publish = ".next"
 
 [functions."*"]
 external_node_modules = ["sharp"]
+[build.environment]
+SECRETS_SCAN_ENABLED = "false"
