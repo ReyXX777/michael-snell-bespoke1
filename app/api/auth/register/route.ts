@@ -3,6 +3,14 @@ import bcrypt from "bcryptjs";
 import User from "@/models/User";
 import { connectDB } from "@/lib/mongodb";
 
+/* --------------------------------------------------
+   🔹 FORCE DYNAMIC — Prevent Static Optimization
+-------------------------------------------------- */
+export const dynamic = "force-dynamic";
+
+/* --------------------------------------------------
+   🔹 REGISTER API
+-------------------------------------------------- */
 export async function POST(req: Request) {
     console.info("🟦 STEP 1: Register API hit");
 
@@ -66,7 +74,6 @@ export async function POST(req: Request) {
             { success: true, message: "User registered successfully" },
             { status: 200 }
         );
-
     } catch (error) {
         console.error("❌ REGISTER API ERROR:", error);
 

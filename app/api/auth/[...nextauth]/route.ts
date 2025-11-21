@@ -6,10 +6,18 @@ import { connectDB } from "@/lib/mongodb";
 import User from "@/models/User"; // default export recommended
 import mongoose from "mongoose";
 
+/* --------------------------------------------------
+   🔹 FORCE DYNAMIC — Prevent Static Optimization
+-------------------------------------------------- */
+export const dynamic = "force-dynamic";
+
+/* --------------------------------------------------
+   🔹 NEXTAUTH HANDLER
+-------------------------------------------------- */
 const handler = NextAuth({
     providers: [
         /* -----------------------------------------
-         🔹 GOOGLE AUTH PROVIDER 
+           🔹 GOOGLE AUTH PROVIDER 
         ----------------------------------------- */
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -17,16 +25,14 @@ const handler = NextAuth({
         }),
 
         /* -----------------------------------------
-         🔹 CREDENTIALS (MANUAL LOGIN)
+           🔹 CREDENTIALS (MANUAL LOGIN)
         ----------------------------------------- */
         CredentialsProvider({
             name: "Credentials",
-
             credentials: {
                 email: { label: "Email", type: "email" },
                 password: { label: "Password", type: "password" },
             },
-
             async authorize(credentials) {
                 if (!credentials?.email || !credentials?.password) {
                     throw new Error("Missing email or password");
@@ -39,7 +45,10 @@ const handler = NextAuth({
                     throw new Error("User not found");
                 }
 
-                const isValid = await bcrypt.compare(credentials.password, user.password);
+                const isValid = await bcrypt.compare(
+                    credentials.password,
+                    user.password
+                );
 
                 if (!isValid) {
                     throw new Error("Invalid password");
@@ -75,9 +84,7 @@ const handler = NextAuth({
         async signIn({ user, account }) {
             try {
                 await connectDB();
-
                 const LoginEvent = mongoose.connection.collection("login_events");
-
                 await LoginEvent.insertOne({
                     email: user?.email || "unknown",
                     provider: account?.provider || "unknown",
@@ -95,4 +102,7 @@ const handler = NextAuth({
     secret: process.env.NEXTAUTH_SECRET,
 });
 
+/* --------------------------------------------------
+   🔹 EXPORTS FOR NEXT.JS 13 APP ROUTES
+-------------------------------------------------- */
 export { handler as GET, handler as POST };
