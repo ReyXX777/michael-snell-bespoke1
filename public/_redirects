@@ -1,0 +1,14 @@
+# Redirect root to /home (optional)
+"/"  "/home"  302
+
+# Login page
+"/login"  "/login"  200
+
+# Signup page
+"/register"  "/register"  200
+
+# NextAuth callback
+"/api/auth/callback/google"  "/api/auth/callback/google"  200
+
+# Catch-all — serve index.html (for SPA fallback)
+"/*"  "/index.html"  200
