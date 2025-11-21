@@ -3,14 +3,22 @@
 # ===========================
 
 [build]
-command = "bun run build"
+command = "npm run build"
 publish = ".next"
+functions = ".netlify/functions"
 
 [build.environment]
 SECRETS_SCAN_ENABLED = "false"
 
 [functions."*"]
 external_node_modules = ["sharp"]
+
+# ===========================
+# Netlify Next.js Plugin
+# ===========================
+
+[[plugins]]
+package = "@netlify/plugin-nextjs"
 
 # ===========================
 # Redirect Rules
