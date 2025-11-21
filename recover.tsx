@@ -213,6 +213,21 @@ export default function LoginPage() {
                         <h3 className="font-semibold mb-2">Quick Links</h3>
                         <ul className="space-y-1">
                             <li>
+                                <Link href="/login/home" className="hover:underline">
+                                    Home
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/measurements" className="hover:underline">
+                                    Measurement
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/account" className="hover:underline">
+                                    Accounts
+                                </Link>
+                            </li>
+                            <li>
                                 <Link href="/refund-policy" className="hover:underline">
                                     Refund Policy
                                 </Link>
@@ -228,38 +243,59 @@ export default function LoginPage() {
                                 </Link>
                             </li>
                             <li>
+                                <Link href="/forgot-password" className="hover:underline">
+                                    Forgot Password
+                                </Link>
+                            </li>
+                            <Link href="/reset-password" className="hover:underline">
+                                Reset Password
+                            </Link>
+                            <li>
                                 <Link href="/account-detail" className="hover:underline">
-                                    Account Detail
+                                    Account Detail 1
                                 </Link>
                             </li>
                             <li>
+                                <Link href="/orders" className="hover:underline">
+                                    orders
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/orders/history" className="hover:underline">
+                                    orders status
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/address" className="hover:underline">
+                                    address
+                                </Link>
+                            </li>
+
+                            <li>
                                 <Link href="/fabric" className="hover:underline">
-                                    Fabric
+                                    fabric
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/aboutus" className="hover:underline">
-                                    About Us
+                                    about-us
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/schedule-appointment" className="hover:underline">
-                                    Schedule Appointment
+                                    schedule-appointment
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/admin-signin" className="hover:underline">
-                                    Admin Signin
+                                    admin signin
                                 </Link>
                             </li>
-                            <li>
-                                <a href="#" className="hover:underline">
-                                    About
-                                </a>
-                            </li>
+
+                            <li><a href="#">About</a></li>
                             <li>
                                 <Link href="/contact-us" className="hover:underline">
-                                    Contact Us
+                                    Contact us
                                 </Link>
                             </li>
                             <li>
@@ -269,7 +305,6 @@ export default function LoginPage() {
                             </li>
                         </ul>
                     </div>
-
 
                     {/* Column 3 */}
                     <div>
