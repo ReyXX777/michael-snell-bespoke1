@@ -11,7 +11,7 @@ export default function Footer() {
 
     return (
         <footer className="bg-gray-100 mt-16 pt-12 border-t">
-            {/* Scroll to top */}
+            
             <div className="flex justify-end pr-6">
                 <button
                     onClick={scrollToTop}
