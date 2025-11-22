@@ -1,21 +1,27 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import User from "@/models/User";
-import { connectDB } from "@/lib/mongodb";
+import mongoose from "mongoose";
 
 export async function POST(req: Request) {
     console.info("🟦 STEP 1: Register API hit");
 
     try {
         console.info("🟦 STEP 2: Trying to connect to DB...");
-        const connectionResult = await connectDB();
-        console.info("🟩 DB RESULT:", connectionResult);
+
+        // SAFE: Lazy DB connect (no top-level DB calls)
+        if (mongoose.connection.readyState === 0) {
+            await mongoose.connect(process.env.MONGODB_URI as string);
+        }
+
+        console.info("🟩 DB CONNECTED");
+
+        // LAZY–LOAD MODEL (prevents build crashes)
+        const User = (await import("@/models/User")).default;
 
         // READ RAW BODY
         let bodyText = await req.text();
         console.info("🟦 STEP 3: Raw incoming body:", bodyText);
 
-        // PARSE JSON MANUALLY (more reliable)
         let body: any = {};
         try {
             body = JSON.parse(bodyText);
